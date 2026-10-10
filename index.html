@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1712">
+  <meta name="description" content="CHRismi Chess — Think Smart. Play Fearlessly. Face Chrismi.">
+  <title>CHRismi Chess — The Unbeatable Challenge</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CHRismi Chess home"><span class="brand-mark">♚</span><span>CHRismi<span class="brand-gold">.</span><small>CHESS ARENA</small></span></a>
+    <div class="top-actions"><span class="online-dot"></span><span class="top-label">SINGLE PLAYER ARENA</span><button id="soundToggle" class="icon-button" aria-label="Toggle sound" title="Toggle sound">♫ <span id="soundLabel">SOUND ON</span></button></div>
+  </header>
+
+  <main>
+    <section id="welcomeScreen" class="screen welcome-screen active">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> THE ULTIMATE CHESS CHALLENGE</div>
+        <h1>CHRismi<br><span>Chess</span></h1>
+        <p class="hero-subtitle">Think Smart. Play Fearlessly.<br><strong>Face Chrismi.</strong></p>
+        <p class="hero-description">Every move is a decision. Every decision has a consequence. Step into the arena and test your mind against Chrismi.</p>
+        <button id="readyButton" class="primary-button">READY TO PLAY <span>↗</span></button>
+        <div class="hero-foot"><span>♟</span> BUILT FOR STRATEGISTS <i></i> POWERED BY CHESS RULES</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="king-halo"></div><div class="hero-king">♚</div>
+        <div class="floating-piece piece-a">♞</div><div class="floating-piece piece-b">♜</div><div class="floating-piece piece-c">♟</div>
+        <div class="art-caption"><span>01 / 64</span><span>THE BOARD IS YOURS</span></div>
+      </div>
+    </section>
+
+    <section id="colorScreen" class="screen color-screen">
+      <div class="section-heading"><div class="eyebrow"><span></span> YOUR GAME. YOUR CHOICE.</div><h2>CHOOSE YOUR <em>SIDE</em></h2><p>Which color do you want to play?</p></div>
+      <div class="color-cards">
+        <button class="color-card white-card" data-color="w" aria-pressed="false">
+          <span class="select-check">✓</span><span class="card-piece white-king">♔</span><span class="card-title">PLAY AS WHITE</span><span class="card-desc">Take the first move.</span><span class="card-bottom">LIGHT SIDE <span>→</span></span>
+        </button>
+        <button class="color-card black-card" data-color="b" aria-pressed="false">
+          <span class="select-check">✓</span><span class="card-piece black-king">♚</span><span class="card-title">PLAY AS BLACK</span><span class="card-desc">Challenge Chrismi from the dark side.</span><span class="card-bottom">DARK SIDE <span>→</span></span>
+        </button>
+      </div>
+      <button id="enterButton" class="primary-button" disabled>ENTER THE ARENA <span>↗</span></button>
+      <button class="text-button back-button" data-back="welcomeScreen">← BACK TO HOME</button>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <div class="game-heading"><div><div class="eyebrow"><span></span> LIVE MATCH</div><h2>THE <em>ARENA</em></h2></div><button id="restartButton" class="secondary-button">↻ RESTART</button></div>
+      <div class="game-layout">
+        <div class="board-column">
+          <div class="player-strip opponent-strip"><div class="avatar bot-avatar">♚</div><div class="player-meta"><strong>CHRismi</strong><span>THE UNBEATABLE CHALLENGER</span></div><div class="player-color" id="botColor">BLACK</div><span class="thinking-dot" id="thinkingDot"></span></div>
+          <div class="board-frame"><div id="board" class="board" role="grid" aria-label="Chessboard"></div></div>
+          <div class="player-strip human-strip"><div class="avatar human-avatar">♙</div><div class="player-meta"><strong>YOU</strong><span id="humanSub">WHITE · PLAYER</span></div><div class="player-color" id="humanColor">WHITE</div></div>
+          <div class="board-legend"><span><i class="legend-dot legal"></i> Possible move</span><span><i class="legend-dot last"></i> Last move</span><span><i class="legend-dot check"></i> Check</span></div>
+        </div>
+        <aside class="game-sidebar">
+          <div class="status-card"><div class="status-top"><span class="status-light"></span><span id="statusTag">YOUR TURN</span></div><h3 id="statusTitle">Make your move.</h3><p id="statusDetail">The arena is ready. Choose your move carefully.</p><div class="divider"></div><div class="turn-row"><span>TO MOVE</span><strong id="turnValue">WHITE</strong></div></div>
+          <div class="history-card"><div class="panel-title"><span>MOVE HISTORY</span><span id="moveCount">00</span></div><div id="moveHistory" class="move-history"><div class="history-empty">Your game will appear here.</div></div></div>
+          <div class="engine-card"><div class="engine-icon">✦</div><div><strong>CHRismi ENGINE</strong><p id="engineStatus">Initializing chess engine…</p></div><span id="engineLed" class="engine-led"></span></div>
+          <p class="sidebar-note">♜ &nbsp; Play fair. Think ahead. Own the board.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <section id="resultOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+    <div class="result-card"><div class="result-emblem" id="resultEmblem">♚</div><div class="eyebrow"><span></span> MATCH COMPLETE</div><h2 id="resultTitle">GAME OVER</h2><p id="resultMessage"></p><p id="resultSub" class="result-sub"></p><div class="result-actions"><button id="rematchButton" class="primary-button">REMATCH <span>↗</span></button><button id="leaveButton" class="secondary-button">LEAVE</button></div></div>
+  </section>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <footer><span>CHRismi Chess</span><span>PLAY WITH PURPOSE <i>·</i> THINK WITH CLARITY</span></footer>
+</body>
+</html>
